@@ -26,6 +26,7 @@ const calculateHash = async () => {
     });
 
     stream.on("error", (err) => {
+      console.error(err);
       reject(err);
     });
   });
