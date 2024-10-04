@@ -7,11 +7,8 @@ const write = async () => {
   const stream = createWriteStream(
     path.join(import.meta.dirname, "files", "fileToWrite.txt"),
   );
-  //   process.stdin.on("data", (data) => {
-  //     stream.write(data);
-  //   });
-  process.stdin.pipe(stream);
-  process.stdin.on("error", (err) => {
+
+  process.stdin.pipe(stream).on("error", (err) => {
     console.error(err);
   });
 };
