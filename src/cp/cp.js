@@ -3,9 +3,13 @@
 // child process stdout should send data to master process stdout
 
 import { spawn } from "child_process";
+import path from "path";
 
 const spawnChildProcess = async (args) => {
-  const child = spawn("node", ["src/cp/files/script.js", ...args]);
+  const child = spawn("node", [
+    path.join(import.meta.dirname, "files", "script.js"),
+    ...args,
+  ]);
 
   process.stdin.on("data", (chunk) => {
     child.stdin.write(chunk);
